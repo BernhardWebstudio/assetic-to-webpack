@@ -7,15 +7,20 @@ Automatically convert your `{% stylesheets %}` and `{% javascripts %}` into
 
 At the moment, this is a rather hacky solution. You have to:
 
-0. *be sure to have a backup of whatever you will try to upgrade*
-1. download/clone this repository
-2. edit the main javascript file: in case your main Namespace 
+0. *Be sure to have a backup of whatever you will try to upgrade! 
+***I do not take any responsibility for using this script!** 
+It will change stuff, to the better or worse, you will see!*
+1. Download/clone this repository
+2. Edit the [main](refactor-webpack.js) javascript file: in case your main Namespace 
 (usually the name of the folder inside `src`) is not app, change the 
 `topNamespace`-variable.
 3. Now you can run the file using node: `node (path...)/refactor-webpack.js (path to src dir)`. 
-(don't copy it like that, you have to replace the stuff in paranteses!) 
-4. Update files by hand where more than one stylesheets resp. javascripts tag was insite.
-5. Set the Encore configuration. (see [Result](#Result))
+(don't copy it like that, you have to replace the stuff in paranteses, maybe even add the path to node!) 
+4. Update files by hand where more than one stylesheets resp. javascripts tag was inside, 
+they should have been listed in the console you ran the script from.
+5. Modify the Webpack Encore configuration 
+(if you did not yet, you will have to follow the steps listed in the [Symfony Docs](https://symfony.com/doc/current/frontend/encore/installation.html)). 
+(see also [Result](#Result))
 
 ## Result
 
@@ -30,7 +35,8 @@ use the following webpack-config to load entries dynamically from the json-files
 // add the following before the module.exports = Encore.... line
 
 // here we load our necessary packages
-// to load the entries.json files
+// to load the entries.json files.
+// be sure to run `yarn add glop path fs` to fix possible issues occuring when running this file
 const glob = require("glob");
 const fs = require("fs");
 const path = require('path');
